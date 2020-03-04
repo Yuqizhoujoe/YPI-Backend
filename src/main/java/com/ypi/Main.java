@@ -1,5 +1,7 @@
 package com.ypi;
 
+import com.ypi.repository.ResourceApplication;
+
 public class Main {
 
     public static void main(String[] args) {

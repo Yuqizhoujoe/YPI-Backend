@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d57b0c7-2b17-4b74-a929-84fae4c2a653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ypi/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/user.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/YPI-BackEnd.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/hibernate.cfg.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +94,7 @@
       <updated>1583207895029</updated>
       <workItem from="1583207898272" duration="1053000" />
       <workItem from="1583248357815" duration="7050000" />
-      <workItem from="1583261943616" duration="5386000" />
+      <workItem from="1583261943616" duration="8325000" />
     </task>
     <servers />
   </component>
@@ -126,10 +118,10 @@
       <screen x="0" y="0" width="1504" height="963" />
     </state>
     <state x="473" y="198" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1504.963@0.0.1504.963" timestamp="1583248402316" />
-    <state x="516" y="190" key="#readJSONFile" timestamp="1583270317326">
+    <state x="516" y="190" key="#readJSONFile" timestamp="1583354039668">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="516" y="190" key="#readJSONFile/0.0.1680.1050@0.0.1680.1050" timestamp="1583270317326" />
+    <state x="516" y="190" key="#readJSONFile/0.0.1680.1050@0.0.1680.1050" timestamp="1583354039668" />
     <state width="819" height="295" key="GridCell.Tab.0.bottom" timestamp="1583270430693">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

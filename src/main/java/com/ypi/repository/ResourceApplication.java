@@ -1,4 +1,4 @@
-package com.ypi;
+package com.ypi.repository;
 
 import com.ypi.entity.Resource;
 import com.ypi.util.DBUtil;
