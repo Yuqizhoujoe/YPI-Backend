@@ -13,22 +13,26 @@ public class readJSONFile {
 
     public static void main(String[] args) {
 
+
+    }
+
+    public JSONArray readJSON() throws IOException {
         // JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
         FileReader reader = null;
+        JSONArray resourceList = null;
 
         try {
             reader = new FileReader("assets/data.json");
             // read json file
             Object obj = jsonParser.parse(reader);
 
-            JSONArray resourceList = (JSONArray) obj;
-            System.out.println(resourceList);
+            resourceList = (JSONArray) obj;
 
-            // Iterate over resource array
+            /*// Iterate over resource array
             for (Object resource : resourceList) {
                 parseResourceObject((JSONObject) resource);
-            }
+            }*/
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -36,7 +40,13 @@ public class readJSONFile {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+            if (resourceList != null) {
+                reader.close();
+            }
         }
+
+        return resourceList;
 
     }
 
@@ -47,6 +57,18 @@ public class readJSONFile {
         // get cost_code
         String cost_code = (String) resource.get("codeNumber");
         System.out.println(cost_code);
+    }
+
+    public String parseResourceName(JSONObject resource) {
+        // get the resource name
+        String resourceName = (String) resource.get("name");
+        return resourceName;
+    }
+
+    public String parseResourceCostCode(JSONObject resource) {
+        // get the resource name
+        String resourceCostCode = (String) resource.get("codeNumber");
+        return resourceCostCode;
     }
 
 
