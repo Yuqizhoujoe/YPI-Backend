@@ -3,17 +3,17 @@ package com.ypi.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "resources")
-public class Resource {
+@Table(name = "project_resource")
+public class ProjectResource {
 
     private int ResourceId;
     private String ResourceName;
     private String Cost_Code;
 
-    public Resource() {
+    public ProjectResource() {
     }
 
-    public Resource(String ResourceName, String Cost_Code){
+    public ProjectResource(String ResourceName, String Cost_Code){
         this.ResourceName = ResourceName;
         this.Cost_Code = Cost_Code;
     }
