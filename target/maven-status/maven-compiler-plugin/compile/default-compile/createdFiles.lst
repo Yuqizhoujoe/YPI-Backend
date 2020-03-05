@@ -1,0 +1,8 @@
+com\itlize\korera\config\WebInitializer.class
+com\itlize\korera\service\ResourceServiceImpl.class
+com\itlize\korera\service\ResourceService.class
+com\itlize\korera\config\WebConfig.class
+com\itlize\korera\entity\Resource.class
+com\itlize\korera\controller\ResourceController.class
+com\itlize\korera\repository\ResourceRepository.class
+com\itlize\korera\config\RootConfig.class
