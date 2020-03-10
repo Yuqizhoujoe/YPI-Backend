@@ -1,69 +1,77 @@
 package com.itlize.korera.service;
 
 import com.itlize.korera.entity.Project;
+
 import com.itlize.korera.entity.ProjectResource;
 import com.itlize.korera.entity.Resource;
 import com.itlize.korera.repository.ProjectRepository;
+import com.itlize.korera.repository.ProjectResourceRepository;
+import com.itlize.korera.repository.ResourceRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("projectService")
-public class ProjectServiceImpl implements ProjectService{
+import java.util.Optional;
 
-    // field injection
+
+/////////////////////////////////////////////////////////////////////
+// PROJECT SERVICE IMPLE: GET,ADD,DELETE,GETBYPROJID,UPDATE /////////
+/////////////////////////////////////////////////////////////////////
+@Service
+public class ProjectServiceImpl implements ProjectService {
+
+    ///////////////////////////////////////////
+    ///// FIELDS:DI: (PROJDAO, PROJRESDAO) ////
+    ///////////////////////////////////////////
+
+
     @Autowired
     private ProjectRepository projectRepository;
 
-    // get all projects from Project table
+    @Autowired
+    private ProjectResourceService projectResourceService;
+
+
     @Override
     public List<Project> getAllProjects() {
+
         return projectRepository.findAll();
     }
 
-    // get project by id
     @Override
-    public Project getProjectById(int id) {
-        return projectRepository.findById(id).get();
+    public Project addProject(Project newProject) {
+        projectRepository.save(newProject);
+        return newProject;
     }
 
-    // create new project
     @Override
-    public Project addProject(Project project) {
-        return projectRepository.save(project);
+    public boolean deleteProjectById(Project newProject) {
+        projectRepository.delete(newProject);
+        return true;
     }
 
-    // add a list of projects
     @Override
-    public void addProjects(List<Project> projects) {
-        for (Project p : projects) {
-            projectRepository.save(p);
-        }
+    public Optional<Project> getProjectById(int id) {
+        Optional<Project> newProject = null;
+
+        newProject = projectRepository.findById(id);
+        return newProject;
     }
 
-    // update project
     @Override
-    public void updateProject(Project project) {
+    public Project updateProjectById(Project project) {
         projectRepository.save(project);
+        return project;
     }
 
-    // delete project by id
     @Override
-    public void deleteProjectById(int id) {
-        projectRepository.deleteById(id);
-    }
+    public List<ProjectResource> getResourcesByProjectId(int id) {
 
+        List<ProjectResource> newProjectResource = projectResourceService.getProjectResourceByProjectId(id);
+
+        return newProjectResource;
+    }
 
 }
-
-/*    // create new project with projectResoueces
-    @Override
-    public Project createProjectWithResources(ProjectResource projectResource) {
-        // create Project object
-        Project project = projectResource.getProject();
-        // add the ProjectResource into the ProjectResource List in Project
-        project.addProjectResources(projectResource);
-        // save the project
-        return projectRepository.save(project);
-    }*/
