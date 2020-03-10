@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         List<User> users= getAllUser();
 
         for(User user : users){
-            if(user.getUsername() == username){ return user;}
+            if(user.getUsername().equals(username)){ return user;}
         }
 
         return null;

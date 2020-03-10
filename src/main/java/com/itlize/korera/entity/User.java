@@ -48,4 +48,14 @@ public class User {
     public void setUserRegisterDate(Date date) {this.UserRegisterDate = date;}
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                ", id=" + UserId +
+                ", username='" + Username + '\'' +
+                ", password='" + UserPassword + '\'' +
+                ", title='" + UserTitle + '\'' +
+                ", registerDate='" + UserRegisterDate + '\'' +
+                '}';
+    }
 }
