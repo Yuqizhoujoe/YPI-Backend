@@ -3,23 +3,22 @@ package com.itlize.korera.service;
 import com.itlize.korera.entity.Resource;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ResourceService {
     // get all resources from Resource Table
     public List<Resource> getAllResources();
 
-    // get resource by id
-    public Resource getResourceById(int id);
-
-    // Create new resource
-    public Resource addResource(Resource resource);
-
-    // add a list of resources
-    public void addResources(List<Resource> resources);
-
-    // update resource
-    public void updateResource(Resource resource);
+    // add resource
+    public Resource addResource(Resource newResource);
 
     // delete resource
-    public void deleteResourceById(int id);
+    public boolean deleteResourceById(Resource newResource);
+
+    // get resource
+    public Optional<Resource> getResourceById(int id);
+
+    // update resource
+    public Resource updateResourceById(Resource resource);
+
 }

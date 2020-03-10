@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("resourceService")
 public class ResourceServiceImpl implements ResourceService {
@@ -25,36 +26,32 @@ public class ResourceServiceImpl implements ResourceService {
         return resources;
     }
 
-    // get Resource by Id
     @Override
-    public Resource getResourceById(int id) {
-        return resourceRepository.findById(id).get();
+    public Resource addResource(Resource newResource) {
+        resourceRepository.save(newResource);
+        return newResource;
     }
 
-    // create resource
     @Override
-    public Resource addResource(Resource resource) {
-        return resourceRepository.save(resource);
+    public boolean deleteResourceById(Resource newResource) {
+
+        resourceRepository.delete(newResource);
+        System.out.println(newResource);
+        return true;
     }
 
-    // add a list of resources
     @Override
-    public void addResources(List<Resource> resources) {
-        for (Resource r : resources) {
-            resourceRepository.save(r);
-        }
+    public Optional<Resource> getResourceById(int id) {
+        Optional<Resource> newResource = null;
+
+        newResource = resourceRepository.findById(id);
+        return newResource;
     }
 
-    // update resource
     @Override
-    public void updateResource(Resource resource) {
-        resourceRepository.save(resource);
-    }
-
-    // delete resource by id
-    @Override
-    public void deleteResourceById(int id) {
-        resourceRepository.deleteById(id);
+    public Resource updateResourceById(Resource newResource) {
+        resourceRepository.save(newResource);
+        return newResource;
     }
 
 }

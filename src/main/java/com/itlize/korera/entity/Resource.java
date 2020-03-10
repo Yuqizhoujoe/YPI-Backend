@@ -13,6 +13,10 @@ public class Resource {
     // constructor
     public Resource() { }
 
+    public Resource(int ResourceId) {
+        this.ResourceId = ResourceId;
+    }
+
     // ResourceId
     @Id
     @Column(name = "ResourceId", unique = true, nullable = false)
@@ -20,6 +24,9 @@ public class Resource {
     private int ResourceId;
     public int getResourceId() {
         return this.ResourceId;
+    }
+    public void setResourceId(int resourceId) {
+        ResourceId = resourceId;
     }
 
     // ResourceName
