@@ -5,8 +5,14 @@ import com.itlize.korera.entity.Resource;
 import java.util.List;
 import java.util.Optional;
 
+                          //////////////////////////////////////////////////////////////////////
+                         // RESOURCE SERVICE INTERFACE: GET,ADD,DELETE,GETBYRESID,UPDATE //////
+                        //////////////////////////////////////////////////////////////////////
+
+
 public interface ResourceService {
-    // get all resources from Resource Table
+
+
     public List<Resource> getAllResources();
 
     public Resource addResource(Resource newResource);

@@ -1,22 +1,39 @@
 package com.itlize.korera.service;
 
 import com.itlize.korera.entity.Resource;
+import com.itlize.korera.repository.ProjectResourceRepository;
 import com.itlize.korera.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+                          /////////////////////////////////////////////////////////////////////
+                         ///// RESOURCE SERVICE IMPLE: GET,ADD,DELETE,GETBYRESID,UPDATE //////
+                        /////////////////////////////////////////////////////////////////////
+
+@Service("resourceService")
 public class ResourceServiceImpl implements ResourceService {
+
+      ///////////////////////////////////////////
+     ///// FIELDS:DI: (RESDAO, PROJRESDAO) ////
+    ///////////////////////////////////////////
+
     @Autowired
     private ResourceRepository resourceRepository;
 
-    // get all resources
+    @Autowired
+    private ProjectResourceRepository projectResourceRepository;
+
     @Override
     public List<Resource> getAllResources() {
-        return resourceRepository.findAll();
+
+        List<Resource> resources = new ArrayList<>();
+        resourceRepository.findAll()
+                .forEach(resources::add);
+        return resources;
     }
 
     @Override

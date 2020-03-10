@@ -1,51 +1,92 @@
 package com.itlize.korera.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.*;
+
+
+                          //////////////////////////////////////////////////////////////////////////
+                         // PROJECT TABLE ENTITY: PROJECT DATA , RELATIONSHIP-> PROJECT:RESOURCE //
+                        //////////////////////////////////////////////////////////////////////////
 
 @Entity
 @Table(name = "project")
 public class Project {
-    // ProjectId
+
+      ///////////////////////////////////////
+     // FIELDS(ID,NAME,PROJECT:RESOURCES) //
+    ///////////////////////////////////////
+
     @Id
     @Column(name = "ProjectId", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ProjectId;
-    // ProjectName
+
+
     @Column(name = "ProjectName", nullable = false)
     private String ProjectName;
 
-    public Project(String ProjectName) {
-        this.ProjectId = ProjectId;
-    }
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<ProjectResource> ProjectResources;
+
+
+      //////////////////////////////////////
+     // CONSTRUCTORS(NAME,NONE,ID) ////////
+    //////////////////////////////////////
 
     public Project() {
     }
 
+    public Project(String ProjectName) {
+       this.ProjectName = ProjectName;
+    }
+
     public Project(int ProjectId) {
+
         this.ProjectId = ProjectId;
     }
 
-    public int getProjectId() {
-        return ProjectId;
+      /////////////////////////////////////////
+     // GETTERS AND SETTERS (ID,NAME,PR(S)) //
+    /////////////////////////////////////////
+
+    public List<ProjectResource> getProjectResources() {
+        return ProjectResources;
     }
+    public void setProjectResources(List<ProjectResource> projectResources) {
+        ProjectResources = projectResources;
+    }
+
 
     public void setProjectId(int projectId) {
         ProjectId = projectId;
     }
+    public int getProjectId() {
+        return ProjectId;
+    }
+
 
     public String getProjectName() {
-        return ProjectName;
+
+        return this.ProjectName;
+    }
+    public void setProjectName(String projectName) {
+
+        this.ProjectName = projectName;
     }
 
-    public void setProjectName(String projectName) {
-        ProjectName = projectName;
-    }
+      //////////////////////////////////////
+     /////// TO-STRING (NAME,ID) //////////
+    //////////////////////////////////////
 
     @Override
     public String toString() {
         return "Project{" +
                 "ProjectId=" + ProjectId +
-                ", ProjectName='" + ProjectName + '\'' +
-                '}';
+                ", ProjectName='" + ProjectName + '\'' + '}';
     }
+
 }

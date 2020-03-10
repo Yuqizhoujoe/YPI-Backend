@@ -11,15 +11,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+                      /////////////////////////////////////////////////////////////////////
+                     //RESOURCE CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE/////
+                    /////////////////////////////////////////////////////////////////////
+
 @RestController
 public class ResourceController {
+
+      /////////////////////////////////////
+     //// FIELDS(RESOURCE:SERVICE) ///////
+    /////////////////////////////////////
+
     @Autowired
     private ResourceService resourceService;
+
+      ////////////////////////////////////////////
+     //// GET:ALL RESOURCES(LIST)(NO-AUTH)///////
+    ////////////////////////////////////////////
 
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
         return resourceService.getAllResources();
     }
+
+      //////////////////////////////////////
+     //// POST:ADD A RESOURCE: AUTH ///////
+    //////////////////////////////////////
 
     @PostMapping(value = "/addResource", consumes="application/json")
     @ResponseBody
@@ -36,6 +53,10 @@ public class ResourceController {
         }
         return ResponseEntity.ok().headers(headers).body(emp);
     }
+
+      //////////////////////////////////////
+     //// GET:GET A RESOURCE: AUTH ////////
+    //////////////////////////////////////
 
     @GetMapping(value = "/resources/{id}",produces = "application/json")
     public ResponseEntity<Resource> getResourceById(@PathVariable @NotNull int id){
@@ -54,6 +75,10 @@ public class ResourceController {
 
         return ResponseEntity.ok().headers(headers).body(emp.get());
     }
+
+      /////////////////////////////////////////
+     //// DELETE:REMOVE A RESOURCE: AUTH /////
+    /////////////////////////////////////////
 
    @DeleteMapping(value = "resource/delete/{id}",produces ="application/json")
    @ResponseBody
@@ -76,6 +101,10 @@ public class ResourceController {
        }
        return "Error! Resource deleted!";
    }
+
+      ////////////////////////////////////////
+     //// PUT:UPDATE A RESOURCE: AUTH ///////
+    ////////////////////////////////////////
 
    @PutMapping(value = "resource/update/{id}",produces ="application/json")
    public String update(@RequestBody Resource resource, @PathVariable int id){
@@ -100,13 +129,5 @@ public class ResourceController {
        }
        return "Error! Resource updated!";
    }
-
-
-
-    @GetMapping("/resources-populate")
-    public void populateResources() {
-
-    }
-
 
 }
