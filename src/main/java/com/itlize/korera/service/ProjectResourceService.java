@@ -15,25 +15,28 @@ public interface ProjectResourceService {
     // get all the projectResources
     public List<ProjectResource> getAllProjectResources();
 
-    // get ProjectResource by ProjectResourceId
-    public ProjectResource getProjectResourceByProjectResourceId(int projectResourceId, int projectId);
+    // get the projectResource by ProjectResourceId
+    public ProjectResource getProjectResourceByProjectResourceId(int projectResourceId);
+
+    // get ProjectResource by ProjectResourceId and ProjectId
+    public ProjectResource getProjectResourceByProjectResourceAndProjectId(int projectResourceId, int projectId);
 
     // get ProjectResource by ProjectId
     public List<ProjectResource> getProjectResourceByProjectId(int projectId);
 
     // add projectResource
-    public void addProjectResource(int projectId, int resourceId);
+    public ProjectResource addProjectResource(int projectId, int resourceId);
 
     // add projectResources
-    public void addProjectResources(int projectId, List<Resource> resources);
+    public List<ProjectResource> addProjectResources(int projectId, List<Resource> resources);
 
     // update projectResource
-    public void updateProjectResource(int projectResourceId, int projectId, int resourceId);
+    public boolean updateProjectResource(int projectResourceId, int projectId, int resourceId);
 
     // delete projectResource
-    public void deleteProjectResource(int projectResourceId);
+    public boolean deleteProjectResource(int projectResourceId);
 
     // delete resource from the project
-    public void deleteResourceFromProject(int projectId, int resourceId);
+    public boolean deleteResourceFromProject(int projectId, int resourceId);
 
 }
