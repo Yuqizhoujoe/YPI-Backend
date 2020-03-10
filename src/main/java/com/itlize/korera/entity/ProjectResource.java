@@ -1,78 +1,84 @@
 package com.itlize.korera.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "project_resource")
 public class ProjectResource {
 
-    private int ProjectResourceId;
-    private int ResourceId;
-    private String ResourceName;
-    private String Cost_Code;
-    private int ProjectId;
-    private String ProjectName;
+    // constructor
+    public ProjectResource(){
+
+    }
 
     // ProjectResourceId
     @Id
-    @Column(name = "ProjectResourceId", unique = true, nullable = false)
+    @Column(name = "ProjectResourceId", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    private int ProjectResourceId;
     public int getProjectResourceId() {
         return ProjectResourceId;
     }
-
     public void setProjectResourceId(int projectResourceId) {
         ProjectResourceId = projectResourceId;
     }
 
-    // ResourceId
-    @Column(name = "ResourceId", nullable = false)
-    public int getResourceId() {
-        return ResourceId;
+    // Resource
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "ResourceId")
+    private Resource resource;
+    public Resource getResource() {
+        return resource;
+    }
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
-    public void setResourceId(int resourceId) {
-        ResourceId = resourceId;
+    // Project
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "ProjectId")
+    private Project project;
+    public Project getProject() {
+        return project;
+    }
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    // ResourceName
-    @Column(name = "ResourceName", nullable = false)
-    public String getResourceName() {
-        return ResourceName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProjectResource)) return false;
+
+        ProjectResource that = (ProjectResource) o;
+
+        if (ProjectResourceId != that.ProjectResourceId) return false;
+        if (resource != null ? !resource.equals(that.resource) : that.resource != null) return false;
+        return project != null ? project.equals(that.project) : that.project == null;
     }
 
-    public void setResourceName(String resourceName) {
-        ResourceName = resourceName;
+    @Override
+    public int hashCode() {
+        int result = ProjectResourceId;
+        result = 31 * result + (resource != null ? resource.hashCode() : 0);
+        result = 31 * result + (project != null ? project.hashCode() : 0);
+        return result;
     }
 
-    // Cost_Code
-    @Column(name = "Cost_Code", nullable = false)
-    public String getCost_Code() {
-        return Cost_Code;
-    }
-
-    public void setCost_Code(String cost_Code) {
-        Cost_Code = cost_Code;
-    }
-
-    // ProjectId
-    @Column(name = "ProjectId", nullable = false)
-    public int getProjectId() {
-        return ProjectId;
-    }
-
-    public void setProjectId(int projectId) {
-        ProjectId = projectId;
-    }
-
-    // ProjectName
-    @Column(name = "ProjectName", nullable = false)
-    public String getProjectName() {
-        return ProjectName;
-    }
-
-    public void setProjectName(String projectName) {
-        ProjectName = projectName;
+    @Override
+    public String toString() {
+        return "ProjectResource{" +
+                "ProjectResourceId=" + ProjectResourceId +
+                ", resource=" + resource.getResourceId() +
+                ", project=" + project.getProjectId() +
+                '}';
     }
 }

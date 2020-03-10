@@ -13,9 +13,12 @@ import java.util.Optional;
 
 @RestController
 public class ResourceController {
+
+    // field injection - resourceService
     @Autowired
     private ResourceService resourceService;
 
+    // get al resources
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
         return resourceService.getAllResources();
@@ -100,13 +103,5 @@ public class ResourceController {
        }
        return "Error! Resource updated!";
    }
-
-
-
-    @GetMapping("/resources-populate")
-    public void populateResources() {
-
-    }
-
 
 }
