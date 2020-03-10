@@ -13,8 +13,10 @@ import javax.persistence.*;
 public class ProjectResource {
 
     // constructor
-    public ProjectResource(){
+    public ProjectResource(){}
 
+    public ProjectResource(int projectResourceId){
+        this.ProjectResourceId = projectResourceId;
     }
 
     // ProjectResourceId
@@ -30,7 +32,7 @@ public class ProjectResource {
     }
 
     // Resource
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+    @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinColumn(name = "ResourceId")
     private Resource resource;
@@ -42,7 +44,7 @@ public class ProjectResource {
     }
 
     // Project
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+    @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinColumn(name = "ProjectId")
     private Project project;
