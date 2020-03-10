@@ -11,18 +11,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+                      /////////////////////////////////////////////////////////////////////
+                     //RESOURCE CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE/////
+                    /////////////////////////////////////////////////////////////////////
+
 @RestController
 public class ResourceController {
 
-    // field injection - resourceService
+      /////////////////////////////////////
+     //// FIELDS(RESOURCE:SERVICE) ///////
+    /////////////////////////////////////
+
     @Autowired
     private ResourceService resourceService;
 
-    // get al resources
+      ////////////////////////////////////////////
+     //// GET:ALL RESOURCES(LIST)(NO-AUTH)///////
+    ////////////////////////////////////////////
+
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
         return resourceService.getAllResources();
     }
+
+      //////////////////////////////////////
+     //// POST:ADD A RESOURCE: AUTH ///////
+    //////////////////////////////////////
 
     @PostMapping(value = "/addResource", consumes="application/json")
     @ResponseBody
@@ -39,6 +53,10 @@ public class ResourceController {
         }
         return ResponseEntity.ok().headers(headers).body(emp);
     }
+
+      //////////////////////////////////////
+     //// GET:GET A RESOURCE: AUTH ////////
+    //////////////////////////////////////
 
     @GetMapping(value = "/resources/{id}",produces = "application/json")
     public ResponseEntity<Resource> getResourceById(@PathVariable @NotNull int id){
@@ -58,7 +76,11 @@ public class ResourceController {
         return ResponseEntity.ok().headers(headers).body(emp.get());
     }
 
-   @DeleteMapping(value = "/delete/{id}",produces ="application/json")
+      /////////////////////////////////////////
+     //// DELETE:REMOVE A RESOURCE: AUTH /////
+    /////////////////////////////////////////
+
+   @DeleteMapping(value = "resource/delete/{id}",produces ="application/json")
    @ResponseBody
    public String delete(@PathVariable int id) {
        boolean isDeleted = false;
@@ -80,7 +102,11 @@ public class ResourceController {
        return "Error! Resource deleted!";
    }
 
-   @PutMapping(value = "/update/{id}",produces ="application/json")
+      ////////////////////////////////////////
+     //// PUT:UPDATE A RESOURCE: AUTH ///////
+    ////////////////////////////////////////
+
+   @PutMapping(value = "resource/update/{id}",produces ="application/json")
    public String update(@RequestBody Resource resource, @PathVariable int id){
        Resource isUpdated =  null;
        HttpHeaders headers = new HttpHeaders();
