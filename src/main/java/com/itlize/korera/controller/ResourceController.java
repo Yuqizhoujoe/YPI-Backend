@@ -55,7 +55,7 @@ public class ResourceController {
         return ResponseEntity.ok().headers(headers).body(emp.get());
     }
 
-   @DeleteMapping(value = "/delete/{id}",produces ="application/json")
+   @DeleteMapping(value = "resource/delete/{id}",produces ="application/json")
    @ResponseBody
    public String delete(@PathVariable int id) {
        boolean isDeleted = false;
@@ -77,7 +77,7 @@ public class ResourceController {
        return "Error! Resource deleted!";
    }
 
-   @PutMapping(value = "/update/{id}",produces ="application/json")
+   @PutMapping(value = "resource/update/{id}",produces ="application/json")
    public String update(@RequestBody Resource resource, @PathVariable int id){
        Resource isUpdated =  null;
        HttpHeaders headers = new HttpHeaders();
