@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
 
     @Autowired
-    private ProjectResourceRepository projectResourceRepository;
+    private ProjectResourceService projectResourceService;
 
 
     @Override
@@ -69,7 +69,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<ProjectResource> getResourcesByProjectId(int id) {
 
-        List<ProjectResource> newProjectResource = projectResourceRepository.findByProjectId(id);
+        List<ProjectResource> newProjectResource = projectResourceService.getProjectResourceByProjectId(id);
 
         return newProjectResource;
     }

@@ -2,7 +2,11 @@ package com.itlize.korera.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.itlize.korera.service.ProjectResourceService;
+import com.itlize.korera.service.ProjectResourceServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resources;
 import javax.persistence.*;
 import java.util.*;
 
