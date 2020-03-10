@@ -1,29 +1,30 @@
 package com.itlize.korera.service;
 
 import com.itlize.korera.entity.Project;
+
 import com.itlize.korera.entity.ProjectResource;
 import com.itlize.korera.entity.Resource;
 
 import java.util.List;
+import java.util.Optional;
+
+                  //////////////////////////////////////////////////////////////////////
+                 // PROJECT SERVICE INTERFACE: GET,ADD,DELETE,GETBYPROJID,UPDATE //////
+                //////////////////////////////////////////////////////////////////////
 
 public interface ProjectService {
 
-    // get all projects from Project Table
+
     public List<Project> getAllProjects();
 
-    // get project by id
-    public Project getProjectById(int id);
+    public Project addProject(Project newProject);
 
-    // Create new project
-    public Project addProject(Project project);
+    public boolean deleteProjectById(Project newProject);
 
-    // add a list of projects
-    public void addProjects(List<Project> projects);
+    public Optional<Project> getProjectById(int id);
 
-    // update project by id
-    public void updateProject(Project project);
+    public Project updateProjectById(Project project);
 
-    // delete project
-    public void deleteProjectById(int id);
+    public List<ProjectResource> getResourcesByProjectId(int id);
 
 }

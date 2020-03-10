@@ -28,6 +28,9 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     private ProjectResourceRepository projectResourceRepository;
 
     @Autowired
+    private ProjectService projectService;
+
+    @Autowired
     private ProjectRepository projectRepository;
 
     @Autowired
@@ -54,6 +57,8 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     // get the list of ProjectResource by projectId
     @Override
     public List<ProjectResource> getProjectResourceByProjectId(int projectId) {
+       Optional<Project> newProj =  projectService.getProjectById(projectId);
+       newProj.get().setProjectResources(projectResourceRepository.findByProjectId(projectId));
         return projectResourceRepository.findByProjectId(projectId);
     }
 
