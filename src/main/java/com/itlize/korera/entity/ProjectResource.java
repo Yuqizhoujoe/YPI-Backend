@@ -32,8 +32,9 @@ public class ProjectResource {
     }
 
     // Resource
-    @ManyToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {
+            CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.EAGER)
     @JoinColumn(name = "ResourceId")
     private Resource resource;
     public Resource getResource() {
@@ -44,8 +45,9 @@ public class ProjectResource {
     }
 
     // Project
-    @ManyToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {
+            CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.EAGER)
     @JoinColumn(name = "ProjectId")
     private Project project;
     public Project getProject() {

@@ -30,7 +30,9 @@ public class Resource {
     @Column(name = "Cost_Code", nullable = false)
     private String Cost_Code;
 
-    @OneToMany(mappedBy = "resource", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "resource", cascade = {
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ProjectResource> ProjectResources;
 
@@ -51,7 +53,6 @@ public class Resource {
         this.ResourceName = ResourceName;
         this.Cost_Code = Cost_Code;
     }
-
 
       ////////////////////////////////////////////
      // GETTERS AND SETTERS (ID,NAME,CC,PR(S)) //

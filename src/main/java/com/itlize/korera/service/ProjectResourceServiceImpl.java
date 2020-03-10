@@ -57,8 +57,6 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     // get the list of ProjectResource by projectId
     @Override
     public List<ProjectResource> getProjectResourceByProjectId(int projectId) {
-       Optional<Project> newProj =  projectService.getProjectById(projectId);
-       newProj.get().setProjectResources(projectResourceRepository.findByProjectId(projectId));
         return projectResourceRepository.findByProjectId(projectId);
     }
 
@@ -77,6 +75,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         projectResource.setProject(project);
         // save the projectResource
         ProjectResource saved = projectResourceRepository.save(projectResource);
+        projectResourceRepository.flush();
         return saved;
     }
 
@@ -110,6 +109,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
                     System.out.println(pr.toString());
                     // save the projectResource
                     ProjectResource saved = projectResourceRepository.save(pr);
+                    projectResourceRepository.flush();
                     // add the projectResource added into projectResource List
                     projectResourceList.add(saved);
                 }
@@ -140,6 +140,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         System.out.println(pr.toString());
         // save the projectResource
         ProjectResource saved = projectResourceRepository.save(pr);
+        projectResourceRepository.flush();
         // print the saved projectResource
         System.out.println(saved.toString());
         return true;
@@ -150,6 +151,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     public boolean deleteProjectResource(int projectResourceId) {
         System.out.println("execute function deleteProjectResource");
         projectResourceRepository.deleteById(projectResourceId);
+        projectResourceRepository.flush();
         return true;
     }
 
@@ -163,9 +165,11 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         System.out.println(pr.toString());
         // get projectResourceId
         int projectResourceId = pr.getProjectResourceId();
+        System.out.println("Yuqi Zhou");
         System.out.println("ProjectResource Id: " + projectResourceId);
         // delete projectResource by projectResourceId
         projectResourceRepository.deleteById(projectResourceId);
+        projectResourceRepository.flush();
         return true;
     }
 

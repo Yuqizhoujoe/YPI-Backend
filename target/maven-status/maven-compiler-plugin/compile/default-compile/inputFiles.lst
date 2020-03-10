@@ -2,6 +2,7 @@ C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\ProjectServiceImpl.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\controller\ProjectResourceController.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\entity\ProjectResource.java
+<<<<<<< HEAD
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\model\JwtRequest.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\config\WebSecurityConfig.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\config\SpringSecurityInitializer.java
@@ -21,13 +22,23 @@ C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\controller\UserController.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\entity\Project.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\dto\UserDto.java
+=======
+C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\repository\ProjectResourceRepository.java
+C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\entity\Project.java
+>>>>>>> yuqijoe-dev
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\controller\ProjectController.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\ProjectResourceService.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\ProjectService.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\controller\ResourceController.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\config\WebConfig.java
+C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\repository\ProjectRepository.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\entity\Resource.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\config\RootConfig.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\repository\ResourceRepository.java
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\ProjectResourceServiceImpl.java
+<<<<<<< HEAD
 C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\UserService.java
+=======
+C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\config\WebInitializer.java
+C:\Graduate\Web Development\practice\Itlize Global\BackEnd\Spring Framework\YPI\YPI-BackEnd\src\main\java\com\itlize\korera\service\ResourceService.java
+>>>>>>> yuqijoe-dev

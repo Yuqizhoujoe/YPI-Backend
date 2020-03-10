@@ -16,7 +16,7 @@ import java.util.*;
                         //////////////////////////////////////////////////////////////////////////
 
 @Entity
-@Table(name = "project")
+@Table(name = "projects")
 public class Project {
 
       ///////////////////////////////////////
@@ -32,7 +32,9 @@ public class Project {
     @Column(name = "ProjectName", nullable = false)
     private String ProjectName;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", cascade = {
+            CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ProjectResource> ProjectResources;
 
@@ -49,20 +51,12 @@ public class Project {
     }
 
     public Project(int ProjectId) {
-
         this.ProjectId = ProjectId;
     }
 
       /////////////////////////////////////////
      // GETTERS AND SETTERS (ID,NAME,PR(S)) //
     /////////////////////////////////////////
-
-    public List<ProjectResource> getProjectResources() {
-        return ProjectResources;
-    }
-    public void setProjectResources(List<ProjectResource> projectResources) {
-        ProjectResources = projectResources;
-    }
 
 
     public void setProjectId(int projectId) {
