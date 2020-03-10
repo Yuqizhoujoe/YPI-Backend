@@ -51,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok().body("User: "+id+"Deleted");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user")
     public ResponseEntity<?> addUser(@RequestBody UserDto newUserDto){
         if(newUserDto == null) return ResponseEntity.badRequest().body("Cannot add Empty user");
 
