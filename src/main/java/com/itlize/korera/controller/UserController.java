@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Validated
 @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-@CrossOrigin("http://localhost:4200")
 public class UserController {
     @Autowired
     private UserService userService;

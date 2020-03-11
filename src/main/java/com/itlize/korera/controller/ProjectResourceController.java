@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@CrossOrigin("http://localhost:4200")
 public class ProjectResourceController {
 
     // field injection - projectResourceService
