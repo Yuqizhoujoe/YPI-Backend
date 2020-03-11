@@ -6,7 +6,7 @@ import com.itlize.korera.entity.Resource;
 import com.itlize.korera.repository.ProjectRepository;
 import com.itlize.korera.repository.ProjectResourceRepository;
 import com.itlize.korera.repository.ResourceRepository;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

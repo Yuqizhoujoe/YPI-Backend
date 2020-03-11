@@ -18,7 +18,7 @@ import java.util.Optional;
 //////////////////////////////////////////////////////////////////////
 // PROJECT CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE /////
 //////////////////////////////////////////////////////////////////////
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ProjectController {
 
