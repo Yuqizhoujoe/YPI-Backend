@@ -6,7 +6,7 @@ import com.itlize.korera.service.ProjectResourceService;
 import com.itlize.korera.service.ProjectResourceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resources;
+
 import javax.persistence.*;
 import java.util.*;
 

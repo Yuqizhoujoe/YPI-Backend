@@ -30,6 +30,7 @@ public class ResourceController {
      //// GET:ALL RESOURCES(LIST)(NO-AUTH)///////
     ////////////////////////////////////////////
 
+
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
         return resourceService.getAllResources();
@@ -58,6 +59,7 @@ public class ResourceController {
     //////////////////////////////////////
     //// POST:ADD RESOURCES: AUTH ///////
     //////////////////////////////////////
+
     @PostMapping(value = "/addResources", consumes="application/json")
     @ResponseBody
     public List<Resource> addResourceLists(@RequestBody List<Resource> resources){
@@ -67,6 +69,7 @@ public class ResourceController {
       //////////////////////////////////////
      //// GET:GET A RESOURCE: AUTH ////////
     //////////////////////////////////////
+
 
     @GetMapping(value = "/resources/{id}",produces = "application/json")
     public ResponseEntity<Resource> getResourceById(@PathVariable @NotNull int id){
