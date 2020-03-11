@@ -17,6 +17,8 @@ public interface ResourceService {
 
     public Resource addResource(Resource newResource);
 
+    public List<Resource> addResources(List<Resource> resources);
+
     public boolean deleteResourceById(Resource newResource);
 
     public Optional<Resource> getResourceById(int id);

@@ -55,6 +55,15 @@ public class ResourceController {
         return ResponseEntity.ok().headers(headers).body(emp);
     }
 
+    //////////////////////////////////////
+    //// POST:ADD RESOURCES: AUTH ///////
+    //////////////////////////////////////
+    @PostMapping(value = "/addResources", consumes="application/json")
+    @ResponseBody
+    public List<Resource> addResourceLists(@RequestBody List<Resource> resources){
+        return resourceService.addResources(resources);
+    }
+
       //////////////////////////////////////
      //// GET:GET A RESOURCE: AUTH ////////
     //////////////////////////////////////
@@ -66,9 +75,8 @@ public class ResourceController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "ResourceController");
-        emp = resourceService.getResourceById(id);
         try {
-
+            emp = resourceService.getResourceById(id);
         } catch(Exception ex) {
             System.out.println("Resource not found" + ex.getMessage());
             return ResponseEntity.accepted().headers(headers).body(emp.get());
@@ -117,7 +125,6 @@ public class ResourceController {
        Optional<Resource> resourceOptional = resourceService.getResourceById(id);
        try {
            resource.setResourceId(id);
-
            isUpdated = resourceService.updateResourceById(resource);
        } catch(Exception ex) {
            System.out.println("Resource not found to delete" + ex.getMessage());

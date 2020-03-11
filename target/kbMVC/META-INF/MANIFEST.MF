@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
 Built-By: Pierre
 Build-Jdk: 9.0.4
 
+=======
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: kevin
+Build-Jdk: 1.8.0_241
+
+>>>>>>> yuqijoe-dev

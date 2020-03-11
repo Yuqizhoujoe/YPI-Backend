@@ -6,6 +6,7 @@ import com.itlize.korera.entity.Resource;
 import com.itlize.korera.repository.ProjectRepository;
 import com.itlize.korera.repository.ProjectResourceRepository;
 import com.itlize.korera.repository.ResourceRepository;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,23 +42,27 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         return projectResourceRepository.findAll();
     }
 
+    // get the projectResource by ProjectResourceId
+    @Override
+    public ProjectResource getProjectResourceByProjectResourceId(int projectResourceId) {
+        return projectResourceRepository.findById(projectResourceId).get();
+    }
+
     // get the ProjectResource by projectResourceId and ProjectId
     @Override
-    public ProjectResource getProjectResourceByProjectResourceId(int projectResourceId, int projectId) {
+    public ProjectResource getProjectResourceByProjectResourceAndProjectId(int projectResourceId, int projectId) {
         return projectResourceRepository.findProjectResourceByProjectResourceId(projectResourceId, projectId);
     }
 
     // get the list of ProjectResource by projectId
     @Override
     public List<ProjectResource> getProjectResourceByProjectId(int projectId) {
-       Optional<Project> newProj =  projectService.getProjectById(projectId);
-       newProj.get().setProjectResources(projectResourceRepository.findByProjectId(projectId));
         return projectResourceRepository.findByProjectId(projectId);
     }
 
     // add projectResource
     @Override
-    public void addProjectResource(int projectId, int resourceId) {
+    public ProjectResource addProjectResource(int projectId, int resourceId) {
         // get the project by projectId
         Project project = projectRepository.findById(projectId).get();
         // get the resource by resourceId
@@ -69,31 +74,19 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         // set project
         projectResource.setProject(project);
         // save the projectResource
-        projectResourceRepository.save(projectResource);
-        /*// loog through the resourceList
-        for (Resource r : resourceList) {
-            if (r.equals(resource)) {
-                System.out.println("Resource :" + r.toString());
-                // create new projectResource
-                ProjectResource pr = new ProjectResource();
-                // set project
-                pr.setProject(project);
-                // set resource
-                pr.setResource(r);
-                // save the projectResource
-                ProjectResource saved = projectResourceRepository.save(pr);
-                // print the saved projectResource
-                System.out.println(saved.toString());
-            }
-        }*/
+        ProjectResource saved = projectResourceRepository.save(projectResource);
+        projectResourceRepository.flush();
+        return saved;
     }
 
     // add projectResources
     @Override
-    public void addProjectResources(int projectId, List<Resource> resources) {
+    public List<ProjectResource> addProjectResources(int projectId, List<Resource> resources) {
         System.out.println("Add ProjectResources");
         // get the project by projectId
         Project p = projectRepository.findById(projectId).get();
+        // create a List of ProjectResource
+        List<ProjectResource> projectResourceList = new ArrayList<>();
         // get each resource in the resources
         for (Resource resource : resources) {
             System.out.println("Loop Resource List");
@@ -115,15 +108,19 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
                     System.out.println("Print out projectResource");
                     System.out.println(pr.toString());
                     // save the projectResource
-                    projectResourceRepository.save(pr);
+                    ProjectResource saved = projectResourceRepository.save(pr);
+                    projectResourceRepository.flush();
+                    // add the projectResource added into projectResource List
+                    projectResourceList.add(saved);
                 }
             }
         }
+        return projectResourceList;
     }
 
     // update projectResource
     @Override
-    public void updateProjectResource(int projectResourceId, int projectId, int resourceId) {
+    public boolean updateProjectResource(int projectResourceId, int projectId, int resourceId) {
         // get the project by projectId
         Project project = projectRepository.findById(projectId).get();
         // print project
@@ -134,7 +131,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         System.out.println(resource.toString());
         // get the projectResource by projectResourceId
         ProjectResource pr = projectResourceRepository.
-                findProjectResourceByProjectResourceId(projectId, projectResourceId);
+                findById(projectResourceId).get();
         // set resource
         pr.setResource(resource);
         // set project
@@ -143,24 +140,37 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         System.out.println(pr.toString());
         // save the projectResource
         ProjectResource saved = projectResourceRepository.save(pr);
+        projectResourceRepository.flush();
         // print the saved projectResource
         System.out.println(saved.toString());
+        return true;
     }
 
     // delete projectResource by projectResourceId
     @Override
-    public void deleteProjectResource(int projectResourceId) {
+    public boolean deleteProjectResource(int projectResourceId) {
+        System.out.println("execute function deleteProjectResource");
         projectResourceRepository.deleteById(projectResourceId);
+        projectResourceRepository.flush();
+        return true;
     }
 
     // delete resource from the project
     @Override
-    public void deleteResourceFromProject(int projectId, int resourceId) {
+    public boolean deleteResourceFromProject(int projectId, int resourceId) {
+        System.out.println("execute function deleteResourceFromProject");
         // get projectResource by projectId and resourceId
         ProjectResource pr = projectResourceRepository.
                 findProjectResourceByProjectAndResourceId(projectId, resourceId);
-        // delete the projectResource
-        projectResourceRepository.delete(pr);
+        System.out.println(pr.toString());
+        // get projectResourceId
+        int projectResourceId = pr.getProjectResourceId();
+        System.out.println("Yuqi Zhou");
+        System.out.println("ProjectResource Id: " + projectResourceId);
+        // delete projectResource by projectResourceId
+        projectResourceRepository.deleteById(projectResourceId);
+        projectResourceRepository.flush();
+        return true;
     }
 
 }

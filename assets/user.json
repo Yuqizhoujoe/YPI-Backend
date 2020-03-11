@@ -1,0 +1,18 @@
+[
+  {
+    "Username" : "yuqiZhou",
+    "UserPassword" : "javawebToken2014",
+    "UserTitle" : "Team Leader"
+  },
+  {
+    "Username" : "pierreAgustin",
+    "UserPassword" : "AngularMaster2019",
+    "UserTitle" : "Front-End Master"
+  },
+  {
+    "Username" : "ianSuwandi",
+    "UserPassword" : "SpringBoot2020",
+    "UserTitle" : "Back-End"
+  }
+
+]

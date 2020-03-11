@@ -43,6 +43,14 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
+    public List<Resource> addResources(List<Resource> resources) {
+        for (Resource r : resources) {
+            resourceRepository.save(r);
+        }
+        return resources;
+    }
+
+    @Override
     public boolean deleteResourceById(Resource newResource) {
 
         resourceRepository.delete(newResource);
