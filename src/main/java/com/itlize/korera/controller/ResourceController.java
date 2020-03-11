@@ -16,6 +16,7 @@ import java.util.Optional;
                     /////////////////////////////////////////////////////////////////////
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class ResourceController {
 
       /////////////////////////////////////

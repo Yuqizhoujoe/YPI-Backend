@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+
     <data-source source="LOCAL" name="ypi@localhost" uuid="da02282b-80b2-4994-a123-aa154c913236">
+
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ypi</jdbc-url>
     </data-source>
+
     <data-source source="LOCAL" name="ypibackend@localhost" uuid="732e75b0-51f7-46ff-ba52-5ad27b51d6e6">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/ypibackend</jdbc-url>
     </data-source>
+
   </component>
 </project>

@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+com\itlize\korera\service\UserService.class
+com\itlize\korera\service\ProjectServiceImpl.class
+com\itlize\korera\config\JwtRequestFilter.class
+com\itlize\korera\controller\ResourceController.class
+com\itlize\korera\controller\UserController.class
+com\itlize\korera\service\ProjectService.class
+com\itlize\korera\entity\User.class
+com\itlize\korera\config\WebInitializer.class
+com\itlize\korera\controller\ProjectResourceController.class
+com\itlize\korera\repository\ProjectResourceRepository.class
+com\itlize\korera\config\JwtAuthenticationEntryPoint.class
+com\itlize\korera\config\WebConfig.class
+com\itlize\korera\entity\Resource.class
+com\itlize\korera\config\JwtTokenUtil.class
+com\itlize\korera\model\JwtRequest.class
+com\itlize\korera\model\JwtResponse.class
+com\itlize\korera\service\UserServiceImpl.class
+com\itlize\korera\controller\ProjectController.class
+com\itlize\korera\entity\Project.class
+com\itlize\korera\service\ResourceServiceImpl.class
+com\itlize\korera\service\JwtUserDetailService.class
+com\itlize\korera\entity\ProjectResource.class
+com\itlize\korera\service\ProjectResourceServiceImpl.class
+com\itlize\korera\repository\UserRepository.class
+com\itlize\korera\service\ProjectResourceService.class
+com\itlize\korera\config\WebSecurityConfig.class
+com\itlize\korera\repository\ResourceRepository.class
+com\itlize\korera\controller\JwtAuthenticationController.class
+com\itlize\korera\config\SpringSecurityInitializer.class
+com\itlize\korera\repository\ProjectRepository.class
+com\itlize\korera\service\ResourceService.class
+com\itlize\korera\dto\UserDto.class
+=======
 com\itlize\korera\service\ResourceServiceImpl.class
 com\itlize\korera\entity\ProjectResource.class
 com\itlize\korera\service\ProjectResourceServiceImpl.class
@@ -14,5 +48,6 @@ com\itlize\korera\service\ResourceService.class
 com\itlize\korera\config\WebConfig.class
 com\itlize\korera\entity\Resource.class
 com\itlize\korera\controller\ProjectController.class
+>>>>>>> yuqijoe-dev
 com\itlize\korera\config\RootConfig.class
 com\itlize\korera\entity\Project.class
