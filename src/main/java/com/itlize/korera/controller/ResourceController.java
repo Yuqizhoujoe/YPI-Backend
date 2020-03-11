@@ -15,6 +15,7 @@ import java.util.Optional;
                      //RESOURCE CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE/////
                     /////////////////////////////////////////////////////////////////////
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ResourceController {
 
