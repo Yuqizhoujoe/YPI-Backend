@@ -25,8 +25,12 @@ public class JwtUserDetailService implements UserDetailsService {
         User user = userService.getUserByUsername(username);
 
         System.out.println("Find user");
-        System.out.println(user.toString());
-        if(user == null) throw new UsernameNotFoundException("User not found with username: " + username);
+        //System.out.println(user.toString());
+        if(user == null) {
+            System.out.println("user not found");
+            //return new org.springframework.security.core.userdetails.User(null,null,new ArrayList<>());
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
 
         System.out.println("User Found");
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getUserPassword(),new ArrayList<>());
