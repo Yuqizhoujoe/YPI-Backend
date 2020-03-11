@@ -4,24 +4,60 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.*;
+
+import java.util.List;
+
+                  ///////////////////////////////////////////////////////////////////////
+                 // RESOURCE TABLE ENTITY: MAIN DATA, RELATIONSHIP-> PROJECT:RESOURCE //
+                ///////////////////////////////////////////////////////////////////////
 
 @Entity
 @Table(name = "resources")
 public class Resource {
 
-    // constructor
-    public Resource() { }
+      ////////////////////////////////////////////////
+     // FIELDS(ID,NAME,COST:CODE,PROJECT:RESOURCE) //
+    ////////////////////////////////////////////////
 
-    public Resource(int ResourceId) {
-        this.ResourceId = ResourceId;
-    }
-
-    // ResourceId
     @Id
     @Column(name = "ResourceId", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ResourceId;
+
+    @Column(name = "resourceName", nullable = false)
+    private String ResourceName;
+
+    @Column(name = "Cost_Code", nullable = false)
+    private String Cost_Code;
+
+    @OneToMany(mappedBy = "resource", cascade = {
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ProjectResource> ProjectResources;
+
+
+      /////////////////////////////////////
+     //// CONSTRUCTORS(NAME,NONE,ID) /////
+    /////////////////////////////////////
+
+    public Resource() {
+    }
+
+    public Resource(int ResourceId) {
+
+        this.ResourceId = ResourceId;
+    }
+
+    public Resource(String ResourceName, String Cost_Code){
+        this.ResourceName = ResourceName;
+        this.Cost_Code = Cost_Code;
+    }
+
+      ////////////////////////////////////////////
+     // GETTERS AND SETTERS (ID,NAME,CC,PR(S)) //
+    ////////////////////////////////////////////
+
     public int getResourceId() {
         return this.ResourceId;
     }
@@ -29,9 +65,6 @@ public class Resource {
         ResourceId = resourceId;
     }
 
-    // ResourceName
-    @Column(name = "ResourceName", nullable = false, unique = true)
-    private String ResourceName;
     public String getResourceName() {
         return this.ResourceName;
     }
@@ -39,9 +72,6 @@ public class Resource {
         this.ResourceName = resourceName;
     }
 
-    // Cost_Code
-    @Column(name = "Cost_Code", nullable = false, unique = true)
-    private String Cost_Code;
     public String getCost_Code() {
         return this.Cost_Code;
     }
@@ -49,12 +79,10 @@ public class Resource {
         this.Cost_Code = cost_Code;
     }
 
-    // ProjectResources
-    @OneToMany(mappedBy = "resource", cascade =
-            CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-    // the mappedBy should be the object used in ProjectResource
-    private List<ProjectResource> ProjectResources;
+
+      /////////////////////////////////////
+     ////// TO-STRING (NAME,ID) //////////
+    /////////////////////////////////////
 
     @Override
     public String toString() {
@@ -64,6 +92,11 @@ public class Resource {
                 ", Cost_Code='" + Cost_Code + '\'' + '}';
     }
 
+
+      //////////////////////////////////////
+     // EQUALS METHOD(PROJECT RESOURCE) ///
+    //////////////////////////////////////
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,62 +110,7 @@ public class Resource {
         return ProjectResources != null ? ProjectResources.equals(resource.ProjectResources) : resource.ProjectResources == null;
     }
 
-    @Override
-    public int hashCode() {
-        int result = ResourceId;
-        result = 31 * result + (ResourceName != null ? ResourceName.hashCode() : 0);
-        result = 31 * result + (Cost_Code != null ? Cost_Code.hashCode() : 0);
-        result = 31 * result + (ProjectResources != null ? ProjectResources.hashCode() : 0);
-        return result;
-    }
 
-    /*
-    // getter
-    @JsonIgnore
-    public List<ProjectResource> getProjectResources() {
-        // force clients through the add and remove methods
-        return Collections.unmodifiableList(ProjectResources);
-    }
-    // add ProjectResource
-    public void addProjectResource(ProjectResource projectResource){
-        // if is null, create a empty list
-        if (ProjectResources == null) {
-            ProjectResources = new ArrayList<>();
-        }
-        // avoid circular calls : assumes equals and hashcode implemented
-        if (!ProjectResources.contains(projectResource)) {
-            ProjectResources.add(projectResource);
-            projectResource.setResource(this);
-        }
-    }
-    // remove ProjectResource
-    public void removeProjectResource(ProjectResource projectResource) {
-        if (!ProjectResources.contains(projectResource)) {
-            ProjectResources.remove(projectResource);
-            projectResource.setResource(null);
-        }
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Resource)) return false;
 
-        Resource resource = (Resource) o;
-
-        if (ResourceId != resource.ResourceId) return false;
-        if (ResourceName != null ? !ResourceName.equals(resource.ResourceName) : resource.ResourceName != null)
-            return false;
-        if (Cost_Code != null ? !Cost_Code.equals(resource.Cost_Code) : resource.Cost_Code != null) return false;
-        return ProjectResources != null ? ProjectResources.equals(resource.ProjectResources) : resource.ProjectResources == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = ResourceId;
-        result = 31 * result + (ResourceName != null ? ResourceName.hashCode() : 0);
-        result = 31 * result + (Cost_Code != null ? Cost_Code.hashCode() : 0);
-        result = 31 * result + (ProjectResources != null ? ProjectResources.hashCode() : 0);
-        return result;
-    }*/
 }

@@ -6,77 +6,130 @@ import com.itlize.korera.entity.Resource;
 import com.itlize.korera.service.ProjectResourceService;
 import com.itlize.korera.service.ProjectService;
 import com.itlize.korera.service.ResourceService;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ProjectResourceController {
 
     // field injection - projectResourceService
     @Autowired
     private ProjectResourceService projectResourceService;
-    @Autowired
-    private ProjectService projectService;
-    @Autowired
-    private ResourceService resourceService;
 
     // get all projectResources
-    @GetMapping("/project/projectResource")
+    @GetMapping(value = "/project/projectResource", produces = "application/json")
     public List<ProjectResource> getAllProjectResources() {
         return projectResourceService.getAllProjectResources();
     }
 
+    // get projectResource by projectResourceId
+    @GetMapping(value = "/projectResource/{projectResourceId}", produces = "application/json")
+    public ProjectResource getProjectResourceByProjectResourceId(@PathVariable @NotNull int projectResourceId) {
+        return projectResourceService.getProjectResourceByProjectResourceId(projectResourceId);
+    }
+
     // get the ProjectResources by ProjectId
-    @GetMapping("/project/{projectId}/projectResource")
-    public List<ProjectResource> getProjectResourceByProjectId(@PathVariable("projectId") int id){
+    @GetMapping(value = "/project/{projectId}/projectResource", produces = "application/json")
+    public List<ProjectResource> getProjectResourceByProjectId(@PathVariable("projectId")
+                                                                   @NotNull int id){
         return projectResourceService.getProjectResourceByProjectId(id);
     }
 
-    // get ProjectResource by ProjectResourceId
-    @GetMapping("/project/{projectId}/projectResource/{projectResourceId}")
-    public ProjectResource getProjectResourceById(
-            @PathVariable("projectId") int projectId,
-            @PathVariable("projectResourceId") int projectResourceId) {
-        return projectResourceService.getProjectResourceByProjectResourceId(projectId, projectResourceId);
+    // get ProjectResource by ProjectResourceId and ProjectId
+    @GetMapping(value = "/project/{projectId}/projectResource/{projectResourceId}",
+            produces = "application/json")
+    public ProjectResource getProjectResourceByProjectResourceAndProjectId(
+            @PathVariable("projectId") @NotNull int projectId,
+            @PathVariable("projectResourceId") @NotNull int projectResourceId) {
+        return projectResourceService.getProjectResourceByProjectResourceAndProjectId(projectId, projectResourceId);
     }
 
     // add ProjectResource for project
-    @PostMapping("/project/{projectId}/resource/{resourceId}")
-    public void addProjectResource(@PathVariable int projectId,
+    @PostMapping(value = "/project/{projectId}/resource/{resourceId}",
+                produces = "application/json")
+    public ProjectResource addProjectResource(@PathVariable int projectId,
                                    @PathVariable int resourceId) {
-        projectResourceService.addProjectResource(projectId, resourceId);
+        return projectResourceService.addProjectResource(projectId, resourceId);
     }
 
     // add ProjectResources for project
     @PostMapping("/project/{projectId}/resources")
-    public void addProjectResources(@RequestBody List<Resource> resources,
+    public List<ProjectResource> addProjectResources(@RequestBody List<Resource> resources,
                                     @PathVariable int projectId)
     {
-        projectResourceService.addProjectResources(projectId, resources);
+        return projectResourceService.addProjectResources(projectId, resources);
     }
 
     // update ProjectResource
-    @PutMapping("/project/{projectId}/resource/{resourceId}/projectResource/{projectResourceId}")
-    public void updateProjectResource(@PathVariable int projectId,
+    @PutMapping(value = "/project/{projectId}/resource/{resourceId}/projectResource/{projectResourceId}",
+    produces = "application/json")
+    public String updateProjectResource(@PathVariable int projectId,
                                       @PathVariable int resourceId,
                                       @PathVariable int projectResourceId){
-        projectResourceService.updateProjectResource(projectId, resourceId, projectResourceId);
+        boolean isUpdate = false;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "ProjectResourceController");
+        try {
+            isUpdate = projectResourceService.
+                    updateProjectResource(projectResourceId, projectId, resourceId);
+        } catch (Exception ex) {
+            System.out.println("ProjectResource not found to update " + ex.getMessage());
+            return "Error updating the ProjectResource: " + ex.toString();
+        }
+
+        if (isUpdate) {
+            return "ProjectResource successfully updated!";
+        }
+        return "Error! ProjectResource updated!";
     }
 
     // delete projectResource by projectResourceId
     @DeleteMapping("/projectResource/{projectResourceId}")
-    public void deleteProjectResource(@PathVariable int projectResourceId) {
-        projectResourceService.deleteProjectResource(projectResourceId);
+    public String deleteProjectResource(@PathVariable int projectResourceId) {
+        boolean isDelete = false;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "ProjectResourceController");
+        try {
+            isDelete = projectResourceService.
+                    deleteProjectResource(projectResourceId);
+        } catch (Exception ex) {
+            System.out.println("ProjectResource not found to delete " + ex.getMessage());
+            return "Error deleting the ProjectResource: " + ex.toString();
+        }
+
+        if (isDelete) {
+            return "ProjectResource successfully deleted!";
+        }
+        return "Error! ProjectResource deleted!";
     }
 
     // delete resource from the project
     @DeleteMapping("/project/{projectId}/resource/{resourceId}")
-    public void deleteResourceFromProject(@PathVariable int projectId,
-                                          @PathVariable int resourceId) {
-        projectResourceService.deleteResourceFromProject(projectId, resourceId);
+    public String deleteResourceFromProject(@PathVariable("projectId") int projectId,
+                                          @PathVariable("resourceId") int resourceId) {
+        boolean isDelete = false;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "ProjectResourceController");
+        try {
+            isDelete = projectResourceService.
+                    deleteResourceFromProject(projectId, resourceId);
+        } catch (Exception ex) {
+            System.out.println("ProjectResource not found to delete " + ex.getMessage());
+            return "Error deleting the ProjectResource: " + ex.toString();
+        }
+
+        if (isDelete) {
+            return "ProjectResource successfully deleted!";
+        }
+        return "Error! ProjectResource deleted!";
     }
 }
