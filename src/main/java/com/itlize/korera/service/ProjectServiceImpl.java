@@ -47,6 +47,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> addProjects(List<Project> projects) {
+        for (Project p : projects) {
+            projectRepository.save(p);
+        }
+        return projects;
+    }
+
+    @Override
     public boolean deleteProjectById(Project newProject) {
         projectRepository.delete(newProject);
         return true;

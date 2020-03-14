@@ -2,6 +2,7 @@ package com.itlize.korera.repository;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.itlize.korera.entity.ProjectResource;
+import com.itlize.korera.entity.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@JsonDeserialize(as = Resource.class)
 public interface ProjectResourceRepository extends JpaRepository<ProjectResource, Integer> {
 
     // find projectResources by projectId
