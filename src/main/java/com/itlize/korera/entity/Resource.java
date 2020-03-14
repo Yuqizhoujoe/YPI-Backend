@@ -24,10 +24,10 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ResourceId;
 
-    @Column(name = "resourceName", nullable = false)
+    @Column(name = "resourceName", unique = true, nullable = false)
     private String ResourceName;
 
-    @Column(name = "Cost_Code", nullable = false)
+    @Column(name = "Cost_Code", unique = true, nullable = false)
     private String Cost_Code;
 
     @OneToMany(mappedBy = "resource", cascade = {
@@ -97,6 +97,7 @@ public class Resource {
      // EQUALS METHOD(PROJECT RESOURCE) ///
     //////////////////////////////////////
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,13 +105,11 @@ public class Resource {
 
         Resource resource = (Resource) o;
 
+        if (ResourceId != resource.ResourceId) return false;
         if (ResourceName != null ? !ResourceName.equals(resource.ResourceName) : resource.ResourceName != null)
             return false;
         if (Cost_Code != null ? !Cost_Code.equals(resource.Cost_Code) : resource.Cost_Code != null) return false;
         return ProjectResources != null ? ProjectResources.equals(resource.ProjectResources) : resource.ProjectResources == null;
     }
-
-
-
 
 }

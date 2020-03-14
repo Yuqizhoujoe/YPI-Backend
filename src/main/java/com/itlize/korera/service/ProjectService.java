@@ -19,6 +19,8 @@ public interface ProjectService {
 
     public Project addProject(Project newProject);
 
+    public List<Project> addProjects(List<Project> projects);
+
     public boolean deleteProjectById(Project newProject);
 
     public Optional<Project> getProjectById(int id);

@@ -18,8 +18,9 @@ import java.util.Optional;
 //////////////////////////////////////////////////////////////////////
 // PROJECT CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE /////
 //////////////////////////////////////////////////////////////////////
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProjectController {
 
     /////////////////////////////////////
@@ -53,12 +54,29 @@ public class ProjectController {
         try {
             projectService.addProject(newProject);
         } catch(Exception ex) {
-            System.out.println("Project not found" + ex.getMessage());
+            System.out.println("Project cannot be added " + ex.getMessage());
             return ResponseEntity.ok().headers(headers).body(newProj);
         }
         return ResponseEntity.ok().headers(headers).body(newProj);
     }
 
+    //////////////////////////////////////
+    //// POST:ADD PROJECTS: AUTH ////////
+    //////////////////////////////////////
+
+    @PostMapping(value = "/addProjects", produces = "application/json")
+    @ResponseBody
+    public List<Project> addProjects(@RequestBody List<Project> projects) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "ProjectController");
+        try {
+            projectService.addProjects(projects);
+        } catch (Exception ex) {
+            System.out.println("Projects cannot be added " + ex.getMessage());
+        }
+        return projects;
+    }
 
     //////////////////////////////////////
     //// GET:GET A PROJECT: AUTH /////////
