@@ -69,13 +69,6 @@ public class ProjectResource {
         return project != null ? project.equals(that.project) : that.project == null;
     }
 
-    @Override
-    public int hashCode() {
-        int result = ProjectResourceId;
-        result = 31 * result + (resource != null ? resource.hashCode() : 0);
-        result = 31 * result + (project != null ? project.hashCode() : 0);
-        return result;
-    }
 
     @Override
     public String toString() {

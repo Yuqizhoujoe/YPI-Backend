@@ -28,7 +28,6 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ProjectId;
 
-
     @Column(name = "ProjectName", unique = true, nullable = false)
     private String ProjectName;
 
@@ -54,7 +53,12 @@ public class Project {
         this.ProjectId = ProjectId;
     }
 
-      /////////////////////////////////////////
+    public Project(int projectId, String projectName) {
+        ProjectId = projectId;
+        ProjectName = projectName;
+    }
+
+    /////////////////////////////////////////
      // GETTERS AND SETTERS (ID,NAME,PR(S)) //
     /////////////////////////////////////////
 
@@ -76,7 +80,8 @@ public class Project {
         this.ProjectName = projectName;
     }
 
-      //////////////////////////////////////
+
+    //////////////////////////////////////
      /////// TO-STRING (NAME,ID) //////////
     //////////////////////////////////////
 
@@ -84,7 +89,8 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "ProjectId=" + ProjectId +
-                ", ProjectName='" + ProjectName + '\'' + '}';
+                ", ProjectName='" + ProjectName + '\'' +
+                '}';
     }
 
 
@@ -101,8 +107,7 @@ public class Project {
         Project project = (Project) o;
 
         if (ProjectId != project.ProjectId) return false;
-        if (ProjectName != null ? !ProjectName.equals(project.ProjectName) : project.ProjectName != null) return false;
-        return ProjectResources != null ? ProjectResources.equals(project.ProjectResources) : project.ProjectResources == null;
+        return ProjectName != null ? ProjectName.equals(project.ProjectName) : project.ProjectName == null;
     }
 
 }

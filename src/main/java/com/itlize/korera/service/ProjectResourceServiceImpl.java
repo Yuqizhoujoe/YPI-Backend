@@ -96,17 +96,15 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
                 if (resourceItem.getCost_Code().equals(resource.getCost_Code())) {
                     // create new projectResource
                     ProjectResource pr = new ProjectResource();
-                    if (!pr.equals(resourceItem) && !pr.equals(p)) {
-                        // set project
-                        pr.setProject(p);
-                        // set resource
-                        pr.setResource(resourceItem);
-                        // save the projectResource
-                        ProjectResource saved = projectResourceRepository.save(pr);
-                        projectResourceRepository.flush();
-                        // add the projectResource added into projectResource List
-                        projectResourceList.add(saved);
-                    }
+                    // set project
+                    pr.setProject(p);
+                    // set resource
+                    pr.setResource(resourceItem);
+                    // save the projectResource
+                    ProjectResource saved = projectResourceRepository.save(pr);
+                    projectResourceRepository.flush();
+                    // add the projectResource added into projectResource List
+                    projectResourceList.add(saved);
                 }
             }
         }

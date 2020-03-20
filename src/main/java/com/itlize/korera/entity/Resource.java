@@ -6,8 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
-                  ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
                  // RESOURCE TABLE ENTITY: MAIN DATA, RELATIONSHIP-> PROJECT:RESOURCE //
                 ///////////////////////////////////////////////////////////////////////
 
@@ -31,10 +32,16 @@ public class Resource {
     private String Cost_Code;
 
     @OneToMany(mappedBy = "resource", cascade = {
-            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH
     }, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ProjectResource> ProjectResources;
+
+    @OneToMany(mappedBy = "resource", cascade = {
+            CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH
+    }, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<TemplateResource> templateResources;
 
 
       /////////////////////////////////////
