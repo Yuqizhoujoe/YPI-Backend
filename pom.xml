@@ -14,7 +14,7 @@
         <spring.version>5.2.4.RELEASE</spring.version>
         <hibernate.version>5.4.12.Final</hibernate.version>
         <mysql.connector.version>8.0.19</mysql.connector.version>
-        <jackson.version>2.9.10.3</jackson.version>
+        <jackson.version>2.9.10.4</jackson.version>
         <javax.servlet.api.version>4.0.1</javax.servlet.api.version>
         <lombok.version>1.18.12</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
