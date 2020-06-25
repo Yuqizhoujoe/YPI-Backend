@@ -15,8 +15,9 @@ import java.util.Optional;
                      //RESOURCE CONTROLLER: API (ENDPOINTS) POST/GET/PUT/PATCH/DELETE/////
                     /////////////////////////////////////////////////////////////////////
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ResourceController {
 
       /////////////////////////////////////
@@ -63,7 +64,15 @@ public class ResourceController {
     @PostMapping(value = "/addResources", consumes="application/json")
     @ResponseBody
     public List<Resource> addResourceLists(@RequestBody List<Resource> resources){
-        return resourceService.addResources(resources);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "ResourceController");
+        try {
+            resourceService.addResources(resources);
+        } catch (Exception ex) {
+            System.out.println("Resources cannot be added " + ex.getMessage());
+        }
+        return resources;
     }
 
       //////////////////////////////////////

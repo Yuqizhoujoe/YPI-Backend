@@ -82,36 +82,31 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     // add projectResources
     @Override
     public List<ProjectResource> addProjectResources(int projectId, List<Resource> resources) {
-        System.out.println("Add ProjectResources");
         // get the project by projectId
         Project p = projectRepository.findById(projectId).get();
         // create a List of ProjectResource
         List<ProjectResource> projectResourceList = new ArrayList<>();
         // get each resource in the resources
         for (Resource resource : resources) {
-            System.out.println("Loop Resource List");
             // find all resources in the DB
             List<Resource> resourceList = resourceRepository.findAll();
             // loop through the resourceList
             for (Resource resourceItem : resourceList) {
                 // if the resourceItem equal to resource
                 if (resourceItem.getCost_Code().equals(resource.getCost_Code())) {
-                    System.out.println("Print out Resource");
-                    System.out.println(resourceItem.toString());
                     // create new projectResource
                     ProjectResource pr = new ProjectResource();
-                    // set project
-                    pr.setProject(p);
-                    // set resource
-                    pr.setResource(resourceItem);
-                    // print out projectResource
-                    System.out.println("Print out projectResource");
-                    System.out.println(pr.toString());
-                    // save the projectResource
-                    ProjectResource saved = projectResourceRepository.save(pr);
-                    projectResourceRepository.flush();
-                    // add the projectResource added into projectResource List
-                    projectResourceList.add(saved);
+                    if (!pr.equals(resourceItem) && !pr.equals(p)) {
+                        // set project
+                        pr.setProject(p);
+                        // set resource
+                        pr.setResource(resourceItem);
+                        // save the projectResource
+                        ProjectResource saved = projectResourceRepository.save(pr);
+                        projectResourceRepository.flush();
+                        // add the projectResource added into projectResource List
+                        projectResourceList.add(saved);
+                    }
                 }
             }
         }
@@ -123,12 +118,8 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     public boolean updateProjectResource(int projectResourceId, int projectId, int resourceId) {
         // get the project by projectId
         Project project = projectRepository.findById(projectId).get();
-        // print project
-        System.out.println(project.toString());
         // get the resource by resourceId
         Resource resource = resourceRepository.findById(resourceId).get();
-        // print resource
-        System.out.println(resource.toString());
         // get the projectResource by projectResourceId
         ProjectResource pr = projectResourceRepository.
                 findById(projectResourceId).get();
@@ -136,8 +127,6 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         pr.setResource(resource);
         // set project
         pr.setProject(project);
-        // print projectResource
-        System.out.println(pr.toString());
         // save the projectResource
         ProjectResource saved = projectResourceRepository.save(pr);
         projectResourceRepository.flush();

@@ -29,7 +29,7 @@ public class Project {
     private int ProjectId;
 
 
-    @Column(name = "ProjectName", nullable = false)
+    @Column(name = "ProjectName", unique = true, nullable = false)
     private String ProjectName;
 
     @OneToMany(mappedBy = "project", cascade = {
@@ -85,6 +85,24 @@ public class Project {
         return "Project{" +
                 "ProjectId=" + ProjectId +
                 ", ProjectName='" + ProjectName + '\'' + '}';
+    }
+
+
+    //////////////////////////////////////
+    /////// EQUALS  //////////
+    //////////////////////////////////////
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Project)) return false;
+
+        Project project = (Project) o;
+
+        if (ProjectId != project.ProjectId) return false;
+        if (ProjectName != null ? !ProjectName.equals(project.ProjectName) : project.ProjectName != null) return false;
+        return ProjectResources != null ? ProjectResources.equals(project.ProjectResources) : project.ProjectResources == null;
     }
 
 }
